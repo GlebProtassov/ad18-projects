@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerAttackInput : MonoBehaviour
 {
     private CharacterAnimations playerAnimation;
+    public GameObject attackPoint;
 
-    // Start is called before the first frame update
     void Awake()
     {
         playerAnimation = GetComponent<CharacterAnimations>();
@@ -14,23 +14,35 @@ public class PlayerAttackInput : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update(){
+    void Update() {
         if (Input.GetMouseButtonDown(2))
         {
             playerAnimation.Defend(true);
         }
-        if(Input.GetMouseButtonUp(2))
+        if (Input.GetMouseButtonUp(2))
         {
             playerAnimation.UnFreezeAnimation();
             playerAnimation.Defend(false);
         }
         if (Input.GetMouseButtonDown(0))
         {
-            if(Random.Range(0,2)>0){
+            if (Random.Range(0, 2) > 0) {
                 playerAnimation.Attack_1();
-            }else{
+            } else {
                 playerAnimation.Attack_2();
             }
         }
+    }
+    void Activate_AttackPoint()
+    {
+        attackPoint.SetActive(true);
+    }
+    void Deactivate_AttackPoint()
+    {
+        if(attackPoint.activeInHierarchy)
+        {
+            attackPoint.SetActive(false);
+        }
+
     }
 }

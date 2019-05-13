@@ -24,6 +24,7 @@ public class EnemyController:MonoBehaviour{
     private float attack_Timer;
 
     private EnemyState enemy_State;
+    public GameObject attackPoint;
     
     void Awake(){
     enemy_Anim = GetComponent<CharacterAnimations>();
@@ -94,5 +95,17 @@ public class EnemyController:MonoBehaviour{
             enemy_State = EnemyState.CHASE;
         }
         
+    }
+    void Activate_AttackPoint()
+    {
+        attackPoint.SetActive(true);
+    }
+    void Deactivate_AttackPoint()
+    {
+        if (attackPoint.activeInHierarchy)
+        {
+            attackPoint.SetActive(false);
+        }
+
     }
 }
